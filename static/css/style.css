@@ -1,0 +1,16 @@
+.container-fluid .btn-dark {
+    margin: 15px 0 15px 0;
+}
+
+.container-fluid h2 {
+    margin: 0;
+    padding-top: 20px;
+}
+
+.manage_buttons {
+    padding-left: 20px;
+}
+
+.card-body .form-group {
+    margin: 0;
+}
