@@ -8,6 +8,9 @@ require 'functions.php';
 
 if($url == MAIN) {
     $page = 'Ports';
+    $message = check_new_ip();
+
+
     $ip_list = get_ip_list();
 
 } elseif ($url == MANAGE) {

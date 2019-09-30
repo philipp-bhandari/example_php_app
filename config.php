@@ -8,6 +8,7 @@ $roles = [
     '1' => 'Администратор',
     '2' => 'Редактор'
 ];
+$message = null;
 
 define('MAIN', '/ports/');
 define('MANAGE', '/ports/manage');

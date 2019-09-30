@@ -8,9 +8,20 @@
 }
 
 .manage_buttons {
-    padding-left: 20px;
+    margin-left: 20px;
 }
 
 .card-body .form-group {
     margin: 0;
+}
+
+.container-fluid table button.btn-dark {
+    margin: 0;
+}
+
+p.errors {
+    color: red;
+}
+.container-fluid p.success {
+    color: forestgreen;
 }

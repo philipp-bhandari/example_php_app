@@ -34,10 +34,13 @@ echo $nav;
 if($user_data) {
     echo 'Вы залогинены: <strong>' . $user_data['login'] . '</strong>';
 }
+if($message) {
+    echo $message;
+}
 
     if ($url == MAIN){
         echo '<h2>Список IP-адресов</h2>';
-        echo '<button type="button" class="btn btn-dark">Добавить в список</button>';
+        echo '<button data-action="add_ip" type="button" class="btn btn-dark">Добавить в список</button>';
 
         echo '<table class="table table-hover"><thead class="thead-dark">';
         echo '<tr><th scope="col">IP</th><th scope="col">Port</th>';
@@ -47,8 +50,8 @@ if($user_data) {
         foreach ($ip_list as $ip) {
             echo "<tr><td>$ip[0]</td>";
             echo "<td>$ip[1]</td>";
-            echo "<td><a class='manage_buttons' data-id='$ip[2]' href='edit?id=$ip[2]'><img style='max-width: 15px' src='static/img/edit.jpg'></a>";
-            echo "<a class='manage_buttons' data-id='$ip[2]' href='delete?id=$ip[2]'><img style='max-width: 20px' src='static/img/delete.png'></a>";
+            echo "<td><a data-action='edit' class='manage_buttons' data-id='$ip[2]' href='edit?id=$ip[2]'><img style='max-width: 15px' src='static/img/edit.jpg'></a>";
+            echo "<a data-action='delete' class='manage_buttons' data-id='$ip[2]' href='delete?id=$ip[2]'><img style='max-width: 20px' src='static/img/delete.png'></a>";
             echo "</td></tr>";
         }
         echo '</table>';
@@ -80,7 +83,8 @@ FORM;
             $users_list = get_users_list($self_id);
 
             if($users_list) {
-
+                echo '<h2>Список пользователей:</h2>';
+                echo '<button data-action="add_user" type="button" class="btn btn-dark">Добавить в список</button>';
                 echo "<table class='table table-hover'><thead class='thead-dark'>";
                 echo "<tr><th scope='col'>Логин</th>";
                 echo "<th scope='col'>ID</th><th scope='col'>Роль</th>";

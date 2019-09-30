@@ -81,6 +81,26 @@ function get_users_list($self_id) {
     return $result_arr;
 }
 
+function check_new_ip() { # Проверяет не добавлен ли новый IP
+    if(isset($_GET['q']) && $_GET['q'] == 'addip' && isset($_POST['new_ip']) && isset($_POST['new_port'])) {
+        if($_POST['new_ip'] && $_POST['new_port']) {
+            $new_ip = $_POST['new_ip'];
+            $new_port = $_POST['new_port'];
+
+            global $connect;
+            $sql = "INSERT INTO `proxys` (`ip`, `port`) VALUES ('$new_ip', '$new_port')";
+            if($connect->query($sql)) {
+                return "<p class='success'>IP: $new_ip : $new_port успешно добавлен в список</p>";
+            } else {
+                return "Что-то пошло не так.";
+            }
+
+        } else {
+            return '<p class="errors">Значения не должны быть пусты.</p>';
+        }
+    }
+}
+
 //function open_file($path) {
 //    if(file_exists($path)){
 //        $file = fopen($path, 'r');
