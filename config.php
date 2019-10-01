@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 $connect = new mysqli('localhost', 'root', '', 'ports');
 $connect->query("SET NAMES 'utf8' ");
 
@@ -13,3 +17,4 @@ $message = null;
 define('MAIN', '/ports/');
 define('MANAGE', '/ports/manage');
 define('LOGOUT', '/ports/logout');
+define('MASS', '/ports/mass');

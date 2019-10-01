@@ -92,7 +92,7 @@ function check_new_ip() { # Проверяет не добавлен ли нов
             if($connect->query($sql)) {
                 return "<p class='success'>IP: $new_ip : $new_port успешно добавлен в список</p>";
             } else {
-                return "Что-то пошло не так.";
+                return "<p class='errors'>Что-то пошло не так: $connect->error</p>";
             }
 
         } else {
@@ -101,36 +101,35 @@ function check_new_ip() { # Проверяет не добавлен ли нов
     }
 }
 
-//function open_file($path) {
-//    if(file_exists($path)){
-//        $file = fopen($path, 'r');
-//        if($file) {
-//            return $file;
-//        } else {
-//            throw new Exception('Unable to open file: ' . $path);
-//        }
-//    } else {
-//        throw new Exception('File ' . $path . ' not exist');
-//    }
-//}
-//
-//function save_csv($path){
-//        $file = open_file($path);
-//        fgetcsv($file); # Пропускаем первую строку
-//
-//        while (!feof($file)) {
-//            $data = fgetcsv($file);
-//            if(filter_var($data[0], FILTER_VALIDATE_IP) && isset($data[1])){
-//                global $connect;
-//
-//                $sql = "INSERT INTO `proxys`(`ip`, `port`) VALUES ('$data[0]', $data[1])";
-//                if (!$connect->query($sql) === TRUE) {
-//                    throw new Exception("Error: " . $sql . "<br>" . $connect->error . '<br><br>');
-//                }
-//
-//            } else {
-//                throw new Exception('String ' . $data[0] . ':' . $data[1] . ' not IP-adress');
-//            }
-//        }
-//
-//}
+function open_file($path) {
+    if(file_exists($path)){
+        $file = fopen($path, 'r');
+        if($file) {
+            return $file;
+        } else {
+            throw new Exception('Проблема с открытием файла: ' . $path);
+        }
+    } else {
+        throw new Exception('Файл ' . $path . ' не существует');
+    }
+}
+
+function save_csv($path){
+    $file = open_file($path);
+    fgetcsv($file); # Пропускаем первую строку
+
+    while (!feof($file)) {
+        $data = fgetcsv($file);
+        if(filter_var($data[0], FILTER_VALIDATE_IP) && isset($data[1])){
+            global $connect;
+
+            $sql = "INSERT INTO `proxys`(`ip`, `port`) VALUES ('$data[0]', $data[1])";
+            if (!$connect->query($sql) === TRUE) {
+                throw new Exception("Error: " . $sql . "<br>" . $connect->error . '<br><br>');
+            }
+        } else {
+            throw new Exception('Это: ' . $data[0] . ':' . $data[1] . ' не IP-адрес');
+        }
+    }
+    return 1;
+}
