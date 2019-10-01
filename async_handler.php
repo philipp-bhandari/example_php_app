@@ -13,13 +13,11 @@ function apply_sql($sql) {
 }
 
 function change_ip_data($id, $ip, $port) {
-    global $connect;
     $sql = "UPDATE `proxys` SET `ip`='$ip', `port`='$port' WHERE `id`='$id'";
     apply_sql($sql);
 }
 
 function delete_ip($id) {
-    global $connect;
     $sql = "DELETE FROM `proxys` WHERE `id`=$id";
     apply_sql($sql);
 }
