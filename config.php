@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$connect = new mysqli('localhost', 'root', '', 'ports');
+$connect = new mysqli('localhost', 'login', 'password', 'ports');
 $connect->query("SET NAMES 'utf8' ");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -14,7 +14,7 @@ $roles = [
 ];
 $message = null;
 
-define('MAIN', '/ports/');
-define('MANAGE', '/ports/manage');
-define('LOGOUT', '/ports/logout');
-define('MASS', '/ports/mass');
+define('MAIN', '/example_php_app/');
+define('MANAGE', '/example_php_app/manage');
+define('LOGOUT', '/example_php_app/logout');
+define('MASS', '/example_php_app/mass');

@@ -94,7 +94,7 @@ function load() {
                         data.append('port_change', newPort);
 
                         const xhr = new XMLHttpRequest();
-                        xhr.open('POST', '/ports/async_handler.php');
+                        xhr.open('POST', '/example_php_app/async_handler.php');
                         xhr.send(data);
                         xhr.onreadystatechange = function() {
                             if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -115,7 +115,7 @@ function load() {
                     const data = new FormData();
                     data.append('delete_ip', id);
                     const xhr = new XMLHttpRequest();
-                    xhr.open('POST', '/ports/async_handler.php');
+                    xhr.open('POST', '/example_php_app/async_handler.php');
                     xhr.send(data);
                     xhr.onreadystatechange = function() {
                         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
