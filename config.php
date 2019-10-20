@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$connect = new mysqli('localhost', 'login', 'password', 'ports');
+$connect = new mysqli('localhost', 'feelsever', 'victoria1', 'ports');
 $connect->query("SET NAMES 'utf8' ");
 
 $url = parse_url($_SERVER['REQUEST_URI'])['path'];
